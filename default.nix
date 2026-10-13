@@ -22,6 +22,7 @@ in
           window-padding-x = 10;
           window-padding-y = 10;
           window-padding-balance = true;
+          "cursor-style-blink" = true;
         };
       };
       tmux = {
@@ -29,6 +30,7 @@ in
         escapeTime = 0;
         extraConfig = ''
           unbind -a
+          set -g cursor-style blinking-block
           set -g mode-keys vi
           set -g mode-style 'reverse'
           set -g prefix None
