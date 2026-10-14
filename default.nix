@@ -2,14 +2,22 @@
 
 let
   user = config.common.username;
+  copyToSystemClipboard = pkgs.writeShellScriptBin "term-copy-to-system-clipboard" (
+    builtins.readFile ./scripts/term-copy-to-system-clipboard.sh
+  );
 in
 {
   home-manager.users.${user} = {
-    home.file.".config/fish/conf.d/54-tmux-tty-bootstrap.fish".source = ./fish/54-tmux-tty-bootstrap.fish;
+    home.file.".config/fish/conf.d/53-wayland-clipboard-env.fish".source =
+      ./fish/53-wayland-clipboard-env.fish;
+    home.file.".config/fish/conf.d/54-tmux-tty-bootstrap.fish".source =
+      ./fish/54-tmux-tty-bootstrap.fish;
     home.file.".config/fish/conf.d/55-tmux-alt-keys.fish".source = ./fish/55-tmux-alt-keys.fish;
     home.packages = with pkgs; [
       iosevka
       sarasa-gothic
+      wl-clipboard
+      copyToSystemClipboard
     ];
     programs = {
       ghostty = {
@@ -35,7 +43,7 @@ in
           set -g mode-keys vi
           set -g mode-style 'reverse'
           set -g prefix None
-          set -s set-clipboard external
+          set -s set-clipboard off
           set -g status off
           set -g status-keys emacs
           set-option -g focus-events on
@@ -51,7 +59,7 @@ in
           bind -T copy-mode-vi M-Escape send -X cancel
           bind -T copy-mode-vi v send -X begin-selection
           bind -T copy-mode-vi C-v send-keys -X rectangle-toggle \; send -X begin-selection
-          bind -T copy-mode-vi y send -X copy-pipe
+          bind -T copy-mode-vi y send -X copy-pipe-and-cancel "${copyToSystemClipboard}/bin/term-copy-to-system-clipboard"
           bind -T copy-mode-vi M-Left select-pane -L 
           bind -T copy-mode-vi M-Down select-pane -D 
           bind -T copy-mode-vi M-Up select-pane -U   
