@@ -1,11 +1,24 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   user = config.common.username;
 in
 {
+  programs.fish.enable = lib.mkDefault true;
+
+  users.users.${user} = {
+    isNormalUser = lib.mkDefault true;
+    shell = lib.mkDefault pkgs.fish;
+  };
+
   home-manager.users.${user} = {
-    home.file.".config/fish/conf.d/54-tmux-tty-bootstrap.fish".source = ./fish/54-tmux-tty-bootstrap.fish;
+    home.file.".config/fish/conf.d/54-tmux-tty-bootstrap.fish".source =
+      ./fish/54-tmux-tty-bootstrap.fish;
     home.file.".config/fish/conf.d/55-tmux-alt-keys.fish".source = ./fish/55-tmux-alt-keys.fish;
     home.packages = with pkgs; [
       iosevka
