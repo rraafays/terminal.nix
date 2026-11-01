@@ -44,6 +44,7 @@ in
           set -g status off
           set -g status-keys emacs
           set -g allow-passthrough off
+          setw -g aggressive-resize on
           set -as terminal-features ',*:RGB'
           set -as terminal-overrides ',tmux-256color:RGB:Tc'
           set -s extended-keys on
