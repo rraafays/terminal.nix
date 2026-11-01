@@ -1,7 +1,7 @@
 # terminal
 
-Ghostty (systemd user service, tmux on launch), tmux on local VT logins via fish (kernel `/dev/ttyN` or kmscon `/dev/pts/*` with `kmsconvt@` / `getty@tty` session), tmux config, and fish `conf.d` alt-key binds when `TMUX` is set.
+Ghostty (systemd user service, default command attaches tmux session `ghostty`), tmux, and Iosevka / Sarasa Gothic fonts.
 
-Tmux uses `tmux-256color`, true-colour overrides, and `allow-passthrough off`. Focus reporting is off so fish (vi bindings, starship) does not corrupt panes when switching splits. Fish tmux workarounds live in `shell` (`46-tmux.fish`).
+Shell-agnostic: uses the login shell inside tmux (set by `./shell` or the host). Requires **`./common`** only. Import **`./shell`** for fish, starship, and `55-tmux-alt-keys` when using fish with tmux pane keys.
 
-Home Manager + NixOS fish defaults. Requires **`./common`** only; sets `programs.fish` and login shell defaults. Import **`./shell`** as well for starship, lsd, and extra fish snippets.
+Tmux uses `tmux-256color`, true-colour overrides, `allow-passthrough off`, and focus reporting off.
