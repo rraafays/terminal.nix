@@ -36,7 +36,8 @@ in
           window-padding-x = 10;
           window-padding-y = 10;
           window-padding-balance = true;
-          "cursor-style-blink" = true;
+          cursor-style-blink = true;
+          confirm-close-surface = false;
         };
       };
       tmux = {
