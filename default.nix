@@ -43,6 +43,8 @@ in
       tmux = {
         enable = true;
         escapeTime = 0;
+        terminal = "tmux-256color";
+        focusEvents = false;
         extraConfig = ''
           unbind -a
           set -g cursor-style blinking-block
@@ -52,7 +54,9 @@ in
           set -s set-clipboard external
           set -g status off
           set -g status-keys emacs
-          set-option -g focus-events on
+          set -g allow-passthrough off
+          set -as terminal-features ',*:RGB'
+          set -as terminal-overrides ',tmux-256color:RGB:Tc'
           set -s extended-keys on
           set -s extended-keys-format xterm
           set -g user-keys on
