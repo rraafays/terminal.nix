@@ -106,7 +106,7 @@ in
           };
           window.padding = {
             x = 20;
-            y = 10;
+            y = 20;
           };
           window.dynamic_padding = true;
           window.title = "";
