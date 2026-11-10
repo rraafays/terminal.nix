@@ -1,9 +1,9 @@
 # terminal
 
-Kitty (Wayland, `adwaita_dark` theme, client-side window decorations), default session attaches tmux `ghostty`, and Iosevka / Sarasa Gothic fonts.
+Alacritty with **Adwaita Dark** palette colours, default command attaches tmux session `ghostty`, and **Iosevka** then **Sarasa Mono SC** via profile font plus `10-terminal-mono.conf`.
 
-**Iosevka** is the primary font (store paths in `kitty.conf` so Fontconfig cache drift does not break startup). CJK codepoints use **symbol_map** to Sarasa Gothic SC, J, K, and TC (same ranges as the former Ghostty maps). `window_margin_width` replaces Ghostty outer padding. Config reload: `kill -SIGUSR1 $(pidof kitty)` or restart Kitty.
+Alacritty has no per-codepoint font maps; missing glyphs use Fontconfig’s `monospace` prefer list (same order as the former Kitty `symbol_map` intent). `pkgs.iosevka` and `sarasa-gothic` are on `PATH` via `home.packages`.
 
-Shell-agnostic: uses the login shell inside tmux (set by `./shell` or the host). Requires **`./common`** only. Import **`./shell`** for fish, starship, and `55-tmux-alt-keys` when using fish with tmux pane keys.
+Shell-agnostic: tmux runs the login shell (set by `./shell` or the host). Requires **`./common`** only. Import **`./shell`** for fish, starship, and `55-tmux-alt-keys` when using fish with tmux pane keys.
 
 Tmux uses `tmux-256color`, true-colour overrides, `allow-passthrough off`, and focus reporting off.
