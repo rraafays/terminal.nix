@@ -120,9 +120,10 @@ in
         focusEvents = false;
         extraConfig = ''
           unbind -a
-          set -g cursor-style blinking-block
+          set -g copy-mode-selection-style 'reverse'
           set -g mode-keys vi
           set -g mode-style 'reverse'
+          set -as terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[1 q'
           set -g prefix None
           set -s set-clipboard external
           set -g status off

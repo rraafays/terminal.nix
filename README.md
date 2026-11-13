@@ -6,4 +6,4 @@ Alacritty has no per-codepoint font maps; missing glyphs use Fontconfig’s `mon
 
 Shell-agnostic: tmux runs the login shell (set by `./shell` or the host). Requires **`./common`** only. Import **`./shell`** for fish, starship, and `55-tmux-alt-keys` when using fish with tmux pane keys.
 
-Tmux uses `tmux-256color`, true-colour overrides, `allow-passthrough off`, and focus reporting off.
+Tmux uses `tmux-256color`, true-colour overrides, `allow-passthrough off`, focus reporting off, vi copy mode with reverse selection, and `Ss`/`Se` terminal-overrides so Vim DECSCUSR cursor shapes reach Alacritty.
